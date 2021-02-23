@@ -6,6 +6,10 @@ export class AppPage {
   }
 
   async getTitleText(): Promise<string> {
-    return element(by.css('ind-root .content span')).getText();
+    return element(by.css('.toolbar span')).getText();
+  }
+
+  async getInfoText(): Promise<string> {
+    return element(by.css('.content span')).getText();
   }
 }
