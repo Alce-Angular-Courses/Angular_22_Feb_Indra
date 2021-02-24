@@ -1,0 +1,4 @@
+<h2>Saludo Rx</h2>
+<input type="text" [placeholder]="mensaje" id="" [formControl]="fcNombre">  
+<button (click)="onClickBorrar() " type="button">Borrar</button>
+<p class="saludo">Hola {{ fcNombre.value ?  fcNombre.value : 'amigo' }}</p>

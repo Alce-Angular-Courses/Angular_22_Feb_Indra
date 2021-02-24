@@ -1,0 +1,11 @@
+<h2>Saludo</h2>
+<!-- <input type="text" [placeholder]="mensaje" id="" 
+    [value]='nombre' (input)="nombre = $event.target.value"> -->
+<!-- <input type="text" [placeholder]="mensaje" id="" 
+    [ngModel]='nombre' (ngModelChange)="nombre = $event">   -->
+
+<input type="text" [placeholder]="mensaje" id="" [(ngModel)]='nombre'>  
+
+<!-- <button (click)="nombre = '' " type="button">Borrar</button> -->
+<button (click)="onClickBorrar($event) " type="button">Borrar</button>
+<p class="saludo">Hola {{ nombre ? nombre.toUpperCase() : 'amigo' }}</p>

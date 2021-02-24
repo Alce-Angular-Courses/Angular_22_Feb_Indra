@@ -1,0 +1,6 @@
+<h2>Saludo Referencias</h2>
+<input type="text" placeholder="Dime tu nombre" #nombreRef 
+    value = 'Pepe'
+    (input)="nombreRef.value = nombreRef.value">  
+<button (click)="nombreRef.value = '' " type="button">Borrar</button>
+<p class="saludo">Hola {{ nombreRef.value ? nombreRef.value : 'amigo' }}</p>
