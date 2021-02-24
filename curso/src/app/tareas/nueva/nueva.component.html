@@ -1,0 +1,14 @@
+<div class="form-group">
+    <label for="titulo">Descripción de la tarea</label>
+    <input type="text" [(ngModel)]="tarea.titulo"
+        class="form-control" name="titulo" id="titulo">
+</div>
+<div class="form-group">
+    <label for="resp">Responsable de la tarea</label>
+    <input type="text" [(ngModel)]="tarea.responsable"
+        class="form-control" name="resp" id="resp">
+</div>
+<div class="form-group">
+    <button type="button" (click)="onClickSendAdd()"
+        class="btn btn-primary">Guardar</button>
+</div>

@@ -1,1 +1,18 @@
-<p>lista works!</p>
+<h2>Lista en componentes</h2>
+
+<ind-nueva (add)="addTarea($event)"></ind-nueva>
+
+<div *ngIf="aTareas.length; else noTareas ">
+    <h3>Lista de tareas</h3> 
+    <ul class="list-group">
+        <li *ngFor="let item of aTareas; let i = index"
+         class="list-group-item">
+            <ind-tarea [tarea]="item" [indice]="i"
+            (update)="updateTarea($event)" (delete)="deleteTarea($event)"></ind-tarea>
+         </li>
+    </ul>
+ </div>
+ 
+ <ng-template #noTareas>
+     <p>Animate con tu primera tarea para la lista</p>
+ </ng-template>
