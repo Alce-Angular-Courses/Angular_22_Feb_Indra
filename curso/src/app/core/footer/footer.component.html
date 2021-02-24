@@ -1,10 +1,11 @@
 <div class="container">
     <div class="row align-items-center text-center">
         <address class="col-12">
-            {{autor}}
+            {{autor | uppercase }}
         </address>
         <p class="col-12">
-            {{fecha}}
+            <!-- {{fecha | date : 'fullDate' : null : 'es' | titlecase}} -->
+            {{fecha | date : 'fullDate' | titlecase}}
         </p>
     </div>
 </div>
