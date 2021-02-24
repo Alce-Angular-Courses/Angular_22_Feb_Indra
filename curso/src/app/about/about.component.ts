@@ -3,9 +3,10 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'ind-about',
   template: `
-    <p>
-      about works!
-    </p>
+    <div class="row">
+      <ind-menu></ind-menu>
+      <router-outlet></router-outlet>
+    </div>
   `,
   styles: [
   ]
