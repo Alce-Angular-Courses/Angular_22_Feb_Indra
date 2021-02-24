@@ -1,4 +1,11 @@
+:host {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 main {
-  min-height: 65vh;
+  flex: 10 1 60vh;
   margin: 2rem 3rem;
 }
