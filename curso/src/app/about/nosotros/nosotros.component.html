@@ -15,3 +15,14 @@
         <p>Ducimus modi adipisci, minima inventore est alias quos deleniti libero amet rerum expedita beatae velit tempora odit temporibus, assumenda aspernatur magni porro quisquam quo officia cumque. Quas minima exercitationem impedit!</p>
     </ng-container>
 </ind-post>
+<ngb-carousel *ngIf="imagenes.length">
+    <ng-template ngbSlide *ngFor="let item of imagenes">
+        <div class="picsum-img-wrapper">
+          <img [src]="item.imagen" alt="Random first slide">
+        </div>
+        <div class="carousel-caption">
+          <h3>{{ item.titulo | truncar : 10 }}</h3>
+          <p> {{ item.texto | truncar : 20 }}</p>
+        </div>
+    </ng-template>
+</ngb-carousel>

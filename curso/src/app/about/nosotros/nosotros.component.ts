@@ -6,10 +6,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./nosotros.component.scss']
 })
 export class NosotrosComponent implements OnInit {
-
-  constructor() { }
+  imagenes: Array<any>;
+  constructor() { 
+    //
+  }
 
   ngOnInit(): void {
+    this.imagenes = [944, 1011, 984].map((n) => {
+       return {
+        titulo: 'Imagen ' + n, 
+        texto: "Texto demasiado largo para la ocasion " + n,
+        imagen:  `https://picsum.photos/id/${n}/900/500`};
+    }
+    
+    
+   );
+    
   }
 
 }
