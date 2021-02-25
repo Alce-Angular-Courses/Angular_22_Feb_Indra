@@ -4,11 +4,20 @@
         <legend>Datos de usuario</legend>
         <div class="form-group">
             <label for="nombre">Nombre</label>
-            <input type="text" class="form-control" name="nombre" id="nombre" ngModel>
+            <input type="text" class="form-control" name="nombre" id="nombre" ngModel 
+                required minlength='2' #fcNombre="ngModel" >
+        </div>
+        <div class="error" [hidden]="fcNombre.untouched || fcNombre.valid">
+            <p *ngIf="fcNombre.hasError('required')">El campo nombre es necesario</p>
+            <p *ngIf="fcNombre.hasError('minlength')">El nombre tiene que tener al mennos 2 caracteres</p>
         </div>
         <div class="form-group">
             <label for="apellidos">Apellidos</label>
-            <input type="text" class="form-control" name="apellidos" id="apellidos" ngModel>
+            <input type="text" class="form-control" name="apellidos" id="apellidos" ngModel required
+            #fcApellidos="ngModel">
+        </div>
+        <div class="error" [hidden]="fcApellidos.valid || fcApellidos.untouched">
+            <p>El campo apellido es necesario</p>
         </div>
         <div class="form-group">
             <label for="dni">DNI</label>
@@ -83,7 +92,7 @@
             </select>
         </div>
     </fieldset>
-    <button type="submit" class="btn btn-primary">
+    <button type="submit" class="btn btn-primary" [disabled]="ngFormRef.invalid">
         Enviar</button>
     <button type="reset" class="btn btn-primary">
             Reset</button>
