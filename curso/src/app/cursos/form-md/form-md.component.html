@@ -1,37 +1,45 @@
 <h2>Form-md</h2>
-<form name="form-td" id ="form-td">
+<form name="form-td" id ="form-td" [formGroup]="formFB" (ngSubmit)="enviar()">
     <fieldset>
         <legend>Datos de usuario</legend>
         <div class="form-group">
             <label for="nombre">Nombre</label>
-            <input type="text" class="form-control" name="nombre" id="nombre">
+            <input type="text" class="form-control" formControlName="nombre" id="nombre">
+        </div>
+        <div class="error" [hidden]="formFB.get('nombre').untouched || formFB.get('nombre').valid">
+            <p *ngIf="formFB.get('nombre').hasError('required')">El campo nombre es necesario</p>
+            <p *ngIf="formFB.get('nombre').hasError('minlength')">El nombre tiene que tener al mennos 2 caracteres</p>
         </div>
         <div class="form-group">
             <label for="apellidos">Apellidos</label>
-            <input type="text" class="form-control" name="apellidos" id="apellidos">
+            <input type="text" class="form-control" formControlName="apellidos" id="apellidos">
         </div>
         <div class="form-group">
             <label for="dni">DNI</label>
-            <input type="text" class="form-control" name="dni" id="dni">
+            <input type="text" class="form-control" formControlName="dni" id="dni">
             </div>  
         <div class="form-group">
             <label for="email">Correo</label>
-            <input type="email" class="form-control" name="email" id="email">
+            <input type="email" class="form-control" formControlName="email" id="email">
         </div>
         <div class="form-group">
             <label for="nacim">Fecha de nacimiento</label>
-            <input type="date" class="form-control" name="nacim" id="nacim">
+            <input type="date" class="form-control" formControlName="nacim" id="nacim">
+        </div>
+        <div class="error" [hidden]="formFB.get('nacim').untouched || formFB.get('nacim').valid">
+            <p *ngIf="formFB.get('nacim').hasError('required')">La fecha de nacimiento es necesaria</p>
+            <p *ngIf="formFB.get('nacim').hasError('menoredad')">Tienes que ser mayor de edad</p>
         </div>
         <div class="form-group">
           <label for="coment">Comentarios</label>
-          <textarea class="form-control" name="coment" id="coment" rows="3"></textarea>
+          <textarea class="form-control" formControlName="coment" id="coment" rows="3"></textarea>
         </div>                            
     </fieldset>    
     <fieldset>
         <legend>Datos del curso</legend>
         <div class="form-check">
             <label class="form-check-label">
-            <input type="checkbox" class="form-check-input" name="isOk" id="isOk">
+            <input type="checkbox" class="form-check-input" formControlName="isOk" id="isOk">
             Estoy de acuerdo con ....
             </label>
         </div>  
@@ -42,6 +50,7 @@
                 [title]="turno.info">
                 <label class="form-check-label">
                     <input type="radio" class="form-check-input" name="turno" 
+                        formControlName="turno"
                         [id]="'turno-'+turno.id"
                         [value]="turno">
                             {{turno.nombre}}
@@ -72,17 +81,19 @@
         </div>  
         <div class="form-group" >
         <label for="curso">Selecciona el tema</label>
-            <select class="form-control" name="curso" id="curso">
-                <option value=""></option>
+            <select class="form-control" formControlName="curso" id="curso">
                 <option *ngFor="let curso of maestros.cursos"
                     [title]="curso.info"
-                    [value]="curso">{{curso.nombre}}</option>
+                    [ngValue]="curso">{{curso.nombre}}</option>
                 <!-- <option value="angular">Angular</option>
                 <option value="react">React</option>
                 <option value="vue">Vue</option> -->
             </select>
         </div>
     </fieldset>
-    <button type="submit" class="btn btn-primary">
+    <button type="submit" class="btn btn-primary" [disabled]="formFB.invalid">
         Enviar</button>
+    <button type="reset" class="btn btn-primary">Borrar</button>
 </form> 
+
+{{ formFB.value | json}}
