@@ -1,0 +1,18 @@
+<h2>Mock libros</h2>
+<div class="form-group">
+  <label for="clave">Buscar titulos que contengan:</label>
+  <input type="text" class="form-control" name="clave" id="clave" [(ngModel)]="clave">
+</div>
+<button type="button" class="btn btn-primary" (click)="onBuscar()">Buscar</button>
+<div *ngIf="libros.length">
+    <h3>Lista de libros</h3>
+    <ul class="list-group">
+      <li *ngFor="let libro of libros" class="list-group-item">
+        {{libro.titulo}} ({{libro.fecha}})
+        <div *ngFor="let autor of libro.autor">
+          <span>{{ autor }}</span>
+        </div>
+      </li>
+    </ul>
+
+</div>

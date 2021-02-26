@@ -8,6 +8,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CoreModule } from './core/core.module';
 import { FormsModule } from '@angular/forms';
 import { registerLocaleData } from '@angular/common';
+// import { StorageService } from './services/storage.service';
 
 registerLocaleData(localeES);
 
@@ -23,7 +24,10 @@ registerLocaleData(localeES);
     NgbModule,
     CoreModule
   ],
-  providers: [{provide: LOCALE_ID, useValue: 'es'}],
+  providers: [
+    {provide: LOCALE_ID, useValue: 'es'},
+    // StorageService -> forma auntigua de registrar el servicio
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

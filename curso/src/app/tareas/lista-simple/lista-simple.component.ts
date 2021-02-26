@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Tarea } from 'src/app/models/tarea';
-import { isJSDocThisTag } from 'typescript';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'ind-lista-simple',
@@ -11,13 +11,17 @@ export class ListaSimpleComponent implements OnInit {
   tarea: Tarea;
   aTareas: Array<Tarea>;
 
-  constructor() { 
-    //
+  constructor(private storage: StorageService) { 
+    this.storage.store$.subscribe(
+      data => {
+        this.aTareas = data;
+      }
+    );
   }
 
   ngOnInit(): void {
     this.tarea = new Tarea();
-    this.aTareas = [];
+    this.aTareas = this.storage.getTareas();
   }
 
   onClickAdd(): void {
@@ -26,6 +30,7 @@ export class ListaSimpleComponent implements OnInit {
     }
     this.aTareas.push(this.tarea);
     this.tarea = new Tarea();
+    this.storage.setTareas(this.aTareas);
     console.log(this.aTareas);
   }
 

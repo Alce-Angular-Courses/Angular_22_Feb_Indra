@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Tarea } from 'src/app/models/tarea';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'ind-lista',
@@ -8,15 +9,21 @@ import { Tarea } from 'src/app/models/tarea';
 })
 export class ListaComponent implements OnInit {
   aTareas: Array<Tarea>;
-  store: string;
-  constructor() {
-    //
+  // store: string;
+  constructor(private storage: StorageService) {
+    this.storage.store$.subscribe(
+      data => {
+        this.aTareas = data;
+      }
+    );
    }
 
   ngOnInit(): void {
-    this.store = 'tareas';
-    this.aTareas = localStorage.getItem(this.store) 
-      ? JSON.parse(localStorage.getItem(this.store) ) : [];
+    // this.store = 'tareas';
+    this.aTareas = this.storage.getTareas();
+
+   /*  this.aTareas = localStorage.getItem(this.store) 
+      ? JSON.parse(localStorage.getItem(this.store) ) : []; */
   }
 
   addTarea(tarea: Tarea): void {
@@ -35,6 +42,7 @@ export class ListaComponent implements OnInit {
   }
  
   private save() {
-    localStorage.setItem(this.store, JSON.stringify(this.aTareas));
+    this.storage.setTareas(this.aTareas);
+    // localStorage.setItem(this.store, JSON.stringify(this.aTareas));
   }
 }
