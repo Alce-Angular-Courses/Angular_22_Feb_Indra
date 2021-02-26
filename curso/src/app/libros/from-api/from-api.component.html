@@ -1,0 +1,72 @@
+<h2>Libros from-api</h2>
+<div class="row">
+    <div class="col-6">
+        <div class="p-4 p-md-5 mb-4 text-white rounded bg-dark">
+            <h3>Lista de libros</h3>
+            <button class="btn btn-warning btn-sm" 
+                (click)="starAddEdit('add')">Añadir</button>
+        </div>
+            <div class="row">
+                <div class="card col-6" *ngFor="let libro of libros">
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <a [routerLink]='"/libros/"+libro.id'>
+                                {{ libro.titulo }}  ({{ libro.fecha }})
+                            </a>
+                            
+                        </h4>
+                        <p class="card-text" >
+                            <button class="btn btn-light" *ngFor="let item of libro.autor">
+                                {{ item }}
+                            </button>
+                        </p>
+                    </div>
+                    <div class="card-footer text-muted">
+                        <button class="btn btn-warning btn-sm"
+                            (click)="starAddEdit('edit', libro)">Editar</button>
+                        <button class="btn btn-danger btn-sm"
+                        (click)="onDelete(libro)">Borrar</button>
+                        {{libro.id}}
+                      </div>
+                </div>
+            </div>
+
+
+    </div>
+    <div class="col-6" *ngIf="add || edit">
+        <h3>{{ title }}</h3>
+        <form name="form-td" id ="form-td" [formGroup]="form">
+            <fieldset>
+                <legend>Datos del libro
+                    <span *ngIf="edit">ID: {{ form.value.id }}</span>
+                </legend>
+                <div class="form-group">
+                    <label for="titulo">Titulo</label>
+                    <input type="text" class="form-control" 
+                        formControlName="titulo" id="titulo">
+                </div>
+                <div class="form-group">
+                    <label for="fecha">Fecha</label>
+                    <input type="text" class="form-control" 
+                        formControlName="fecha" id="fecha">
+                </div>
+                <div class="form-group">
+                    <label for="autores">Autores</label>
+                    <input type="text" class="form-control" 
+                        formControlName="autor" id="autores">
+                </div>
+            </fieldset>
+            <button type="submit" class="btn btn-primary" *ngIf="add" 
+                (click)="onAdd()">
+                Añadir
+            </button>
+            <button type="submit" class="btn btn-primary" *ngIf="edit" 
+                (click)="onEdit()">
+                Guardar
+            </button>
+        </form>
+
+        {{ form.value | json}}
+    </div>
+</div>
+
