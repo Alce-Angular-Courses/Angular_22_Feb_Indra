@@ -154,5 +154,16 @@
       "genero": "",
       "reseña": ""
     }
+  ],
+  "usuarios": [
+    {
+      "id": 1,
+      "name": "Pepe"
+    },
+    {
+      "id": 2,
+      "name": "Esnesto",
+      "edad": 34
+    }
   ]
 }

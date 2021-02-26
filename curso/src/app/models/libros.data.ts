@@ -9,7 +9,7 @@ export const LIBROS = [
     {
         'id': 2,
         "titulo": "Islas en la red",
-        "autor": ["Bruce Sterling", "Su primo"],
+        "autor": ["Bruce Sterling"],
         "fecha": "1988"
     },
     {
@@ -17,5 +17,14 @@ export const LIBROS = [
         "titulo": "Carbono Alterado",
         "autor": ["Richard Morgan"],
         "fecha": "2002"
+    },
+    {
+        "id": 4,
+        "titulo": "La máquina diferencial",
+        "autor": [
+            "Bruce Sterling",
+            "William Gibson"
+        ],
+        "fecha": "1991",
     }
 ];
